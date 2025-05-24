@@ -9,7 +9,15 @@ export default function HomePage() {
     <>
       <div className="welcome-container">
         <div className="text-section">
-          <h1 className="name"><Image src="/home/smartdeploy.png" alt="Name" width={600} height={700} /></h1>
+        <div className="logo-cropper">
+        <Image
+          src="/home/smartdeploy.png"
+          alt="SmartDeploy Logo"
+          width={500}
+          height={700}
+          style={{ objectFit: 'cover', objectPosition: 'top' }}
+        />
+      </div>
           <p className="subtitle">CREATING SMART MANAGEMENT SYSTEMS FOR FIRST RESPONDERS SAVING LIVES</p>
           <button className="dashboard-button" onClick={() => router.push('/dashboard')}>
             DASHBOARD
@@ -41,7 +49,7 @@ export default function HomePage() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 4rem 6rem;
+          padding: 0rem 6rem;
           min-height: 100vh;
         }
 
@@ -49,21 +57,32 @@ export default function HomePage() {
           flex: 1;
           display: flex;
           flex-direction: column;
+          justify-content: center; /* ⬅️ vertically centers content */
           gap: 1.5rem;
+          height: 100%; /* ⬅️ ensures vertical alignment works */
+          transform: translateY(-90px); /* moves it upward slightly */
         }
 
-        .name {
-          font-size: 4rem;
-          font-weight: 800;
-          letter-spacing: 0.1rem;
-          font: HK
-        }
 
         .subtitle {
           font-size: 1rem;
           letter-spacing: 0.15rem;
           line-height: 1.8;
         }
+
+        .logo-cropper {
+          width: 450px;
+          height: 450px; /* cropped height */
+          overflow: hidden;
+        }
+
+
+        .logo-wrapper {
+          width: 500px; /* match the image */
+          margin-bottom: 0.5rem;
+          line-height: 0; /* eliminates image inline gap */
+        }
+
 
         .dashboard-button {
           padding: 0.8rem 2.5rem;
