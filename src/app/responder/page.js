@@ -83,38 +83,6 @@ export default function ResponderPage() {
           min-height: 100vh;
           background-color: #121212;
         }
-
-        .navbar {
-          background-color: #f2f2f2;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 16px 32px;
-        }
-
-        .logo {
-          font-weight: bold;
-          color: #e10600;
-          font-size: 24px;
-          letter-spacing: 2px;
-        }
-
-        .nav-buttons button {
-          background: none;
-          border: none;
-          font-size: 16px;
-          margin-left: 16px;
-          cursor: pointer;
-          padding: 8px 16px;
-          color: #000;
-        }
-
-        .nav-buttons .active {
-          background-color: #dcdcdc;
-          border-radius: 8px;
-          font-weight: 600;
-        }
-
         .card-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -269,6 +237,26 @@ export default function ResponderPage() {
           background-color: black;
         }
 
+
+        .dashboard-button {
+          padding: 0.8rem 2.5rem;
+          font-size: 1rem;
+          font-weight: 500;
+          border: 2px solid var(--accent-red);
+          background-color: transparent;
+          border-radius: 8px;
+          color: black;
+          letter-spacing: 0.2rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          width: fit-content;
+        }
+
+        .dashboard-button:hover {
+          background-color: var(--accent-red);
+          color: white;
+        }
+          
         .cancel-btn:hover {
           background-color: #333;
         }
