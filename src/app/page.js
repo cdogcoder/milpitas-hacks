@@ -1,7 +1,5 @@
-import React from "react";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-    return (
-        <div>Hello world</div>
-    )
+export default function HomeRedirect() {
+  redirect("/home");
 }

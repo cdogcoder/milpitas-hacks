@@ -25,11 +25,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
       <nav className="navbar">
-            <div className="logo">EMERGA</div>
+            <div className="logo">SMARTDEPLOY</div>
             <div className="nav-buttons">
-              <button onClick={() => router.push("/")}>Home</button>
-              <button onClick={() => router.push("/responder")}>Responder</button>
+              <button onClick={() => router.push("/home")}>Home</button>
               <button onClick={() => router.push("/dashboard")}>Dashboard</button>
+              <button onClick={() => router.push("/responder")}>Responder</button>
             </div>
           </nav>
 
@@ -53,13 +53,6 @@ export default function RootLayout({ children }) {
             justify-content: space-between;
             align-items: center;
             padding: 16px 32px;
-          }
-  
-          .logo {
-            font-weight: bold;
-            color: #e10600;
-            font-size: 24px;
-            letter-spacing: 2px;
           }
   
           .nav-buttons button {
