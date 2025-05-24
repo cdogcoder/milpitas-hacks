@@ -1,7 +1,7 @@
 "use client";
 import { Geist, Geist_Mono } from "next/font/google";
 import { useRouter } from "next/navigation";
-//import "./globals.css";
+import "./common.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,8 +25,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
       <nav className="navbar">
-            <div className="logo">SMARTDEPLOY</div>
-            <div className="nav-buttons">
+            <div id="logo">SMARTDEPLOY</div>
+            <div id="nav-buttons">
               <button onClick={() => router.push("/home")}>Home</button>
               <button onClick={() => router.push("/dashboard")}>Dashboard</button>
               <button onClick={() => router.push("/responder")}>Responder</button>

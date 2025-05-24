@@ -1,0 +1,17 @@
+#logo {
+  color: red;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+#nav-buttons {
+  display: flex;
+  gap: .5rem;
+
+}
+
+#nav-buttons * {
+  background: none;
+  border: none;
+  outline: none;
+}
