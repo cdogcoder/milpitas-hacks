@@ -1,17 +1,30 @@
 "use client";
+import { db } from "@/config/firebase";
+import { collection, getDocs } from "firebase/firestore";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const MapWithNoSSR = dynamic(() => import("../../components/Map"), {
   ssr: false,
 });
 
 export default function Page() {
-  const [responders, setResponders] = useState([
-    { name: "Medic A", lat: 33.7455, lng: -117.8677 },
-    { name: "Pilot B", lat: 33.653, lng: -117.795 },
-    { name: "Rescue C", lat: 33.717, lng: -117.831 },
-  ]);
+  const [fakeResponders, setFakeResponders] = useState([
+    {name: 'Tom', lat: 33.7455, lng: -117.8677},
+    {name: 'John', lat: 33.653, lng: -117.795},
+    {name: 'Kevin', lat: 33.717, lng: -117.831}
+  ])
+  const [responders, setResponders] = useState([]);
+  const collectionRef = collection(db, "responders")
+
+  const setResponderLogs = async () => {
+    const docs = await getDocs(collectionRef);
+    setResponders(docs.docs.map((doc) => ({...doc.data(), id: doc.id})));
+  }
+
+  useEffect(() => {
+    setResponderLogs();
+  }, [responders])
 
   return (
     <>
@@ -22,7 +35,7 @@ export default function Page() {
             <h1 className="text-3xl font-semibold mb-4">
               Manage Your Responder Database
             </h1>
-            <MapWithNoSSR responders={responders} />
+            <MapWithNoSSR responders={fakeResponders} />
 
             <div className="mt-6 bg-white text-black p-4 rounded-md">
               <div className="mb-4">
@@ -51,32 +64,33 @@ export default function Page() {
               <thead>
                 <tr className="border-b">
                   <th className="py-2">Name</th>
-                  <th>Case</th>
-                  <th>Status</th>
-                  <th>Team</th>
+                  <th>Profession</th>
+                  <th>Availability</th>
+                  <th>City</th>
                   <th>Deploy</th>
                 </tr>
               </thead>
               <tbody>
-                {[1, 2, 3, 4, 5, 6].map((_, i) => (
-                  <tr key={i} className="border-b">
-                    <td>Name</td>
-                    <td>Description</td>
+                {responders.map((responder, index) => (
+                  <tr key={index} className="border-b">
+                    <td>{responder.responderName}</td>
+                    <td>{responder.responderProfession}</td>
                     <td
                       className={
-                        i === 0
+                        responder.responderAvailability === "Available"
                           ? "text-green-600 font-semibold"
-                          : i === 1
-                          ? "text-yellow-600 font-semibold"
-                          : ""
+                          : "text-yellow-600 font-semibold"
                       }
                     >
-                      {i === 0 ? "Available" : i === 1 ? "Busy" : ""}
+                      {responder.responderAvailability === "Available" ? "Available" : "Busy" }
                     </td>
-                    <td>👨‍🚒👨‍⚕️👮‍♀️ +{i}</td>
+                    <td>{responder.responderCity}</td>
                     <td className="flex gap-2 items-center">
-                      {i === 0 ? (
-                        <button className="text-white bg-red-500 px-2 py-1 rounded">
+                      {responder.responderAvailability === "Available" ? (
+                        <button className="noti-button text-white bg-red-500 px-2 py-1 rounded" onClick={(event) => {
+                          event.target.textContent = "SENT"
+                          event.target.style.cssText = "background-color: #b40000;"
+                        }}>
                           SEND NOTIFICATION
                         </button>
                       ) : (
@@ -87,25 +101,12 @@ export default function Page() {
                           Unavailable
                         </button>
                       )}
-                      <button className="px-2">✏️</button>
+                      
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <div className="mt-6 bg-white text-black p-4 rounded-md">
-              <div className="flex justify-between items-center flex-wrap gap-4">
-                <button className="pagination-btn">Previous</button>
-                <span className="text-sm text-black-600">Page 1 of 10</span>
-                <button className="pagination-btn">Next</button>
-              </div>
-            </div>
-
-            <div className="flex justify-center mt-6">
-              <button className="bg-red-600 text-white px-6 py-2 rounded">
-                Continue
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -186,24 +187,6 @@ export default function Page() {
   }
 
 /* Pagination buttons styled like filter buttons */
-.pagination-btn {
-  background-color: var(--gray-btn);
-  color: white;
-  border: none;
-  padding: 0.4rem 1rem;
-  border-radius: 0.5rem;
-  font-size: 0.8rem;
-  transition: var(--transition);
-}
-
-.pagination-btn:hover {
-  background-color: var(--accent-red);
-}
-
-
-  .flex.gap-2 button:hover {
-    background-color: var(--accent-red);
-  }
 
   input[type="text"] {
     padding: 0.5rem 0.75rem;

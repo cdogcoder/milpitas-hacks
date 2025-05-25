@@ -19,8 +19,8 @@ export default function Map({ responders = [] }) {
 
   return isLoaded ? (
     <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={11}>
-      {responders.map((r, i) => (
-        <Marker key={i} position={{ lat: r.lat, lng: r.lng }} label={r.name} />
+      {responders.map((responder, index) => (
+        <Marker key={index} position={{ lat: responder.lat, lng: responder.lng }} label={responder.name} />
       ))}
     </GoogleMap>
   ) : (

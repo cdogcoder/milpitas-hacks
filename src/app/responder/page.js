@@ -314,6 +314,198 @@ export default function ResponderPage() {
             addResponderDialog.showModal();
           }}>+</button>
       </div>
+      <style jsx global>{`
+        body,
+        html {
+          margin: 0;
+          padding: 0;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          background-color: #121212;
+          color: white;
+        }
+
+        .container {
+          min-height: 100vh;
+          background-color: #121212;
+        }
+        .card-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+          gap: 24px;
+          padding: 40px;
+        }
+
+        .card {
+          background-color: #000;
+          border: 1px solid #2c2c2c;
+          border-radius: 16px;
+          padding: 24px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+
+        .card-title {
+          background-color: #2e2e2e;
+          padding: 12px 16px;
+          border-radius: 8px;
+          font-size: 18px;
+          margin-bottom: 16px;
+        }
+
+        .tag-label {
+          font-weight: 500;
+          margin-bottom: 8px;
+        }
+
+        .tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+
+        .tag {
+          background-color: #e10600;
+          color: white;
+          padding: 6px 16px;
+          border-radius: 9999px;
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        .buttons-container {
+          display: flex;
+          gap: .5rem;
+          align-self: flex-end;
+        }
+
+        .edit-button,
+        .delete-button {
+          align-self: flex-end;
+          background-color: #2e2e2e;
+          color: white;
+          border: none;
+          padding: 8px 16px;
+          border-radius: 8px;
+          margin-top: 20px;
+          cursor: pointer;
+        }
+
+        .edit-button:hover,
+        .delete-button:hover {
+          background-color: #3c3c3c;
+        }
+
+        .floating-button {
+          position: fixed;
+          bottom: 24px;
+          right: 24px;
+          width: 56px;
+          height: 56px;
+          font-size: 28px;
+          border-radius: 50%;
+          background-color: #2e2e2e;
+          color: white;
+          border: none;
+          box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+          cursor: pointer;
+        }
+
+        .floating-button:hover {
+          background-color: #3c3c3c;
+        }
+
+        .dialog-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.75);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
+        }
+
+        .dialog-box {
+          background: white;
+          color: black;
+          padding: 2rem;
+          border-radius: 12px;
+          box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+          width: 300px;
+        }
+
+        .dialog-box h2 {
+          color: red;
+          text-align: center;
+          margin-bottom: 1rem;
+        }
+
+        form label {
+          display: block;
+          margin-bottom: 1rem;
+          font-weight: bold;
+        }
+
+        form input,
+        form select {
+          width: 100%;
+          padding: 8px;
+          margin-top: 4px;
+          border: 2px solid black;
+          border-radius: 6px;
+        }
+
+        .form-buttons {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 1rem;
+        }
+
+        .submit-btn, .cancel-btn {
+          background-color: red;
+          color: white;
+          padding: 0.5rem 1rem;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          font-weight: bold;
+        }
+
+        .submit-btn:hover, .cancel-btn:hover {
+          background-color: #b30000;
+        }
+
+        .cancel-btn {
+          background-color: black;
+        }
+
+
+        .dashboard-button {
+          padding: 0.8rem 2.5rem;
+          font-size: 1rem;
+          font-weight: 500;
+          border: 2px solid var(--accent-red);
+          background-color: transparent;
+          border-radius: 8px;
+          color: black;
+          letter-spacing: 0.2rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          width: fit-content;
+        }
+
+        .dashboard-button:hover {
+          background-color: var(--accent-red);
+          color: white;
+        }
+          
+        .cancel-btn:hover {
+          background-color: #333;
+        }`}
+      </style>
     </>
   );
 }
