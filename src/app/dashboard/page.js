@@ -41,7 +41,7 @@ export default function Page() {
               <div className="mb-4">
                 <div className="flex gap-2 flex-wrap">
                   <button className="bg-gray-200 px-3 py-1 rounded">
-                    Status
+                    Availability
                   </button>
                   <button className="bg-gray-200 px-3 py-1 rounded">
                     City
